@@ -17,7 +17,9 @@ No BIOS file required to play, PPSSPP is an "HLE" emulator.  Default settings ba
 
 To contribute, see [the development page](https://www.ppsspp.org/development.html).  Help testing, investigating, or fixing is always welcome.  See [the list of issues](https://github.com/hrydgard/ppsspp/issues).
 
-For the latest source code, see [our GitHub page](https://github.com/hrydgard/ppsspp).
+For latest official source code, see [PPSSPP GitHub page](https://github.com/hrydgard/ppsspp).
+
+For our latest source code, see [Our GitHub page](https://github.com/XboxRetroGaming/PPSSPP-UWP).
 
 For documentation of all kinds (usage, reference, development), see the [documentation on the main website](https://www.ppsspp.org/docs)
 
