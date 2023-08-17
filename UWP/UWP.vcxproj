@@ -5,17 +5,9 @@
       <Configuration>Debug</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|ARM64">
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -40,10 +32,6 @@
     <ProjectConfiguration Include="UWP Gold|ARM64">
       <Configuration>UWP Gold</Configuration>
       <Platform>ARM64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="UWP Gold|Win32">
-      <Configuration>UWP Gold</Configuration>
-      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="UWP Gold|x64">
       <Configuration>UWP Gold</Configuration>
@@ -91,10 +79,13 @@
     <AppxBundle>Never</AppxBundle>
     <PackageCertificateThumbprint>C8DEB388B9BC89D1DC61324E4E9D9FE6A796B7AA</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <PackageCertificateKeyFile>PPSSPP_UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <Link>
@@ -252,84 +243,6 @@
       </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
-    <Link>
-      <AdditionalDependencies>xinputuap.lib;libavcodec.a;libavformat.a;libavutil.a;libswresample.a;libswscale.a;d2d1.lib;d3d11.lib;dxgi.lib;windowscodecs.lib;dwrite.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../ffmpeg/Windows10/x86/lib;%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
-    </Link>
-    <ClCompile>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>..;../ext/native;../ext/snappy;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
-      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-    </ClCompile>
-    <PreBuildEvent>
-      <Command>
-				copy PackageNormal.appxmanifest Package.appxmanifest /Y
-				mkdir Assets
-				copy AssetsNormal\*.* Assets /Y
-				robocopy "..\Assets\." "Content\." /xd "mime" /E /R:0 /W:0
-				../Windows/git-version-gen.cmd
-				EXIT 0
-      </Command>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
-    <Link>
-      <AdditionalDependencies>xinputuap.lib;libavcodec.a;libavformat.a;libavutil.a;libswresample.a;libswscale.a;d2d1.lib;d3d11.lib;dxgi.lib;windowscodecs.lib;dwrite.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../ffmpeg/Windows10/x86/lib;%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
-    </Link>
-    <ClCompile>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>..;../ext/native;../ext/snappy;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
-      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-    </ClCompile>
-    <PreBuildEvent>
-      <Command>
-				copy PackageNormal.appxmanifest Package.appxmanifest /Y
-				mkdir Assets
-				copy AssetsNormal\*.* Assets /Y
-				robocopy "..\Assets\." "Content\." /xd "mime" /E /R:0 /W:0
-				../Windows/git-version-gen.cmd
-				EXIT 0
-      </Command>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'UWP Gold|Win32'">
-    <Link>
-      <AdditionalDependencies>xinputuap.lib;libavcodec.a;libavformat.a;libavutil.a;libswresample.a;libswscale.a;d2d1.lib;d3d11.lib;dxgi.lib;windowscodecs.lib;dwrite.lib; %(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../ffmpeg/Windows10/x86/lib;%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
-    </Link>
-    <ClCompile>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>..;../ext/native;../ext/snappy;$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
-      <PreprocessorDefinitions>GOLD;NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-    </ClCompile>
-    <PreBuildEvent>
-      <Command>
-				copy PackageGold.appxmanifest Package.appxmanifest /Y
-				mkdir Assets
-				copy AssetsGold\*.* Assets /Y
-				robocopy "..\Assets\." "Content\." /xd "mime" /E /R:0 /W:0
-				../Windows/git-version-gen.cmd
-				EXIT 0
-      </Command>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <Link>
       <AdditionalDependencies>xinputuap.lib;libavcodec.a;libavformat.a;libavutil.a;libswresample.a;libswscale.a;d2d1.lib;d3d11.lib;dxgi.lib;windowscodecs.lib;dwrite.lib; %(AdditionalDependencies)</AdditionalDependencies>
@@ -461,6 +374,11 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="UWPUtil.h" />
     <ClInclude Include="XAudioSoundStream.h" />
+    <ClInclude Include="UWPHelpers\StorageAccess.h" />
+    <ClInclude Include="UWPHelpers\StorageAsync.h" />
+    <ClInclude Include="UWPHelpers\StorageManager.h" />
+    <ClInclude Include="UWPHelpers\StoragePickers.h" />
+    <ClInclude Include="UWPHelpers\LaunchItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\git-version.cpp">
@@ -472,6 +390,11 @@
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="NKCodeFromWindowsSystem.cpp" />
     <ClCompile Include="PPSSPP_UWPMain.cpp" />
+    <ClCompile Include="UWPHelpers\StorageAccess.cpp" />
+    <ClCompile Include="UWPHelpers\StorageAsync.cpp" />
+    <ClCompile Include="UWPHelpers\StorageManager.cpp" />
+    <ClCompile Include="UWPHelpers\StoragePickers.cpp" />
+    <ClCompile Include="UWPHelpers\LaunchItem.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
